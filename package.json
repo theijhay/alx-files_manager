@@ -16,6 +16,7 @@
   "dependencies": {
     "bull": "^3.16.0",
     "chai-http": "^4.3.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "image-thumbnail": "^1.0.10",
     "mime-types": "^2.1.27",

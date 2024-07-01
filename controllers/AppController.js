@@ -22,7 +22,7 @@ const AppController = {
       console.error('Error getting stats:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  },
 };
 
 module.exports = AppController;

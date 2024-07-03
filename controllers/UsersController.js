@@ -7,15 +7,15 @@ const userQueue = new Queue('email sending');
 
 export default class UsersController {
   static async postNew(req, res) {
-    const e_mails = req.body ? req.body.email : null;
-    const passd = req.body ? req.body.password : null;
+    const email = req.body ? req.body.email : null;
+    const passd = req.body ? req.body.passd : null;
 
-    if (!e_mails) {
+    if (!email) {
       res.status(400).json({ error: 'Missing email' });
       return;
     }
     if (!passd) {
-      res.status(400).json({ error: 'Missing password' });
+      res.status(400).json({ error: 'Missing passd' });
       return;
     }
     const users = await (await dbClient.usersCollection()).findOne({ email });
@@ -25,16 +25,16 @@ export default class UsersController {
       return;
     }
     const insertionInfo = await (await dbClient.usersCollection())
-      .insertOne({ e_mails, passd: sha1(password) });
+      .insertOne({ email, passd: sha1(passd) });
     const userId = insertionInfo.insertedId.toString();
 
     userQueue.add({ userId });
-    res.status(201).json({ e_mails, id: userId });
+    res.status(201).json({ email, id: userId });
   }
 
   static async getMe(req, res) {
     const { user } = req;
 
-    res.status(200).json({ e_mails: user.e_mails, id: user._id.toString() });
+    res.status(200).json({ email: user.email, id: user._id.toString() });
   }
 }

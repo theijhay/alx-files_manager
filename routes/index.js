@@ -4,6 +4,9 @@ import AppController from '../controllers/AppController';
 import AuthController from '../controllers/AuthController';
 import UsersController from '../controllers/UsersController';
 import FilesController from '../controllers/FilesController';
+
+// Disable ESLint for specific rules if necessary
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import { basicAuthenticate, xTokenAuthenticate } from '../middlewares/auth';
 import { APIError, errorResponse } from '../middlewares/error';
 
